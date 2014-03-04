@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+
+var program = require('commander');
+var _ = require('lodash');
+
+var bot = require('../lib/lxc-bot');
+
+// Setup CLI
+program
+    .option('-i --intervall <number>', 'Update intervall. Default 2s', parseInt)
+    .parse(process.argv);
+
+
+console.log('lxc-bot starts working..');
+
+bot.start({
+    intervall: program.intervall
+});

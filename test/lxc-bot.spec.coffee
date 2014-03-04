@@ -25,7 +25,7 @@ describe 'lxc-bot', ->
           rss:  3596
           tty: '?'
           stat: 'Ss'
-          start: moment '10:09', 'HH:mm'
+          start: moment('10:09', 'HH:mm').toDate()
           time: '0:00'
           command: 'sshd: codio [priv]'
       ]

@@ -8,11 +8,19 @@ var bot = require('../lib/lxc-bot');
 // Setup CLI
 program
     .option('-i --intervall <number>', 'Update intervall. Default 2s', parseInt)
+    .option('--mongo <uri>', 'Mongodb uri. Default mongodb://127.0.0.1:27017/echonet')
+    .option('--mongo-collection <collection>', 'Mongodb collection. Default lxc')
     .parse(process.argv);
 
 
 console.log('lxc-bot starts working..');
 
-bot.start({
-    intervall: program.intervall
-});
+var opts = {
+    intervall: program.intervall,
+    mongo: {
+        uri: program.mongo,
+        collection: program.mongoCollection
+    }
+};
+
+bot.start(opts);

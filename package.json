@@ -20,7 +20,8 @@
     "split": "^0.3.0",
     "q": "^1.0.0",
     "lodash": "^2.4.1",
-    "commander": "^2.1.0"
+    "commander": "^2.1.0",
+    "moment": "^2.5.1"
   },
   "devDependencies": {
     "mocha-as-promised": "^2.0.0",

@@ -1,6 +1,7 @@
 fs = require 'fs'
 {expect} = require 'chai'
 q = require 'q'
+moment = require 'moment'
 
 bot = require '../lib/lxc-bot'
 
@@ -13,7 +14,7 @@ describe 'lxc-bot', ->
       result = bot._parse simpleOutput
       q.all [
         expect(result).to.eventually.be.an 'array'
-        expect(result).to.eventually.have.length 6
+        expect(result).to.eventually.have.length 5
         result.then (val) -> expect(val[0]).to.be.eql
           container: 'be35019f81e93763d8ba37e3b89871e1ad28950ce2b6164e6df03d48a9f9fdff'
           user: 'root'
@@ -24,7 +25,7 @@ describe 'lxc-bot', ->
           rss:  3596
           tty: '?'
           stat: 'Ss'
-          start: '10:09'
+          start: moment '10:09', 'HH:mm'
           time: '0:00'
           command: 'sshd: codio [priv]'
       ]

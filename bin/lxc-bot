@@ -11,6 +11,7 @@ program
     .option('--mongo-collection <collection>', 'Mongodb collection. Default lxc')
     .option('--redis-port <port>', 'Redis port. Default 6379', parseInt)
     .option('--redis-host <uri>', 'Redis uri. Default 127.0.0.1')
+    .option('-s --search <pid>', 'Search for a given pid', parseInt)
     .parse(process.argv);
 
 
@@ -27,9 +28,13 @@ var opts = {
     }
 };
 
+if (program.search) {
+    opts.search = program.search;
+}
+
 bot.start(opts).then(function () {
     process.exit();
 }).fail(function (err) {
-    console.error(err);
+    console.error(err.stack);
     process.exit(1);
 });

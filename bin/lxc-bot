@@ -7,20 +7,29 @@ var bot = require('../lib/lxc-bot');
 
 // Setup CLI
 program
-    .option('-i --intervall <number>', 'Update intervall. Default 2s', parseInt)
     .option('--mongo <uri>', 'Mongodb uri. Default mongodb://127.0.0.1:27017/echonet')
     .option('--mongo-collection <collection>', 'Mongodb collection. Default lxc')
+    .option('--redis-port <port>', 'Redis port. Default 6379', parseInt)
+    .option('--redis-host <uri>', 'Redis uri. Default 127.0.0.1')
     .parse(process.argv);
 
 
 console.log('lxc-bot starts working..');
 
 var opts = {
-    intervall: program.intervall,
     mongo: {
         uri: program.mongo,
         collection: program.mongoCollection
+    },
+    redis: {
+        port: program.redisPort,
+        host: program.redisHost
     }
 };
 
-bot.start(opts);
+bot.start(opts).then(function () {
+    process.exit();
+}).fail(function (err) {
+    console.error(err);
+    process.exit(1);
+});

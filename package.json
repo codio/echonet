@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "Monitor all the things",
   "main": "index.js",
+  "bin": {
+      "lxc-bot": "bin/lxc-bot"
+  },
   "scripts": {
     "test": "grunt test"
   },
